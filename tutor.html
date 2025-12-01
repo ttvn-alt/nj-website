@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สำหรับติวเตอร์ - Lemon Tutor</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Kanit', sans-serif; }
+  .hidden { display: none; }
+  .policy-box {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    margin-bottom: 1rem;
+  }
+</style>
+</head>
+<body class="bg-white text-gray-800">
+
+<header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+    <a href="index.html" class="text-2xl font-bold text-yellow-600">Lemon Tutor</a>
+    <nav class="space-x-4 hidden md:flex text-sm">
+      <a href="index.html" class="hover:text-yellow-600">หน้าแรก</a>
+      <a href="student-register.html" class="hover:text-yellow-600">สมัครเรียน</a>
+      <a href="tutor.html" class="hover:text-yellow-600">สำหรับติวเตอร์</a>
+      <a href="policies.html" class="hover:text-yellow-600">นโยบาย</a>
+      <a href="contact.html" class="hover:text-yellow-600">ติดต่อเรา</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pt-24 pb-20">
+  <div class="max-w-2xl mx-auto px-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">สมัครติวเตอร์</h1>
+    <form onsubmit="handleTutorFormSubmit(event)" class="space-y-4">
+      <input placeholder="ชื่อ" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="นามสกุล" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="ชื่อเล่น" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="Line ID" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="date" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="เบอร์โทร" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="มหาวิทยาลัย" class="border rounded-lg px-3 py-2 w-full" required>
+      <input placeholder="วุฒิปริญญาสูงสุด" class="border rounded-lg px-3 py-2 w-full" required>
+      
+      <div>
+        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">สถานที่ที่สะดวกสอน (ระบุ จังหวัด/ แนวรถไฟฟ้า)</label>
+        <textarea id="location" rows="2" class="border rounded-lg px-3 py-2 w-full" placeholder="เช่น กรุงเทพฯ, ตามแนว BTS, นนทบุรี" required></textarea>
+      </div>
+
+      <div>
+        <label for="teaching-type" class="block text-sm font-medium text-gray-700 mb-1">ประเภทการสอน</label>
+        <select id="teaching-type" class="border rounded-lg px-3 py-2 w-full" required>
+          <option value="">เลือกประเภทการสอน</option>
+          <option value="online">Online</option>
+          <option value="onsite">Onsite</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="transcript-upload" class="block text-sm font-medium text-gray-700 mb-1">อัปโหลด Transcript (รองรับไฟล์ PDF)</label>
+        <input type="file" id="transcript-upload" class="border rounded-lg px-3 py-2 w-full" accept=".pdf" required>
+      </div>
+
+      <div>
+        <label for="id-card-upload" class="block text-sm font-medium text-gray-700 mb-1">อัปโหลด สำเนาบัตรประชาชน (รองรับไฟล์ PDF)</label>
+        <input type="file" id="id-card-upload" class="border rounded-lg px-3 py-2 w-full" accept=".pdf" required>
+      </div>
+
+      <div>
+        <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">ประสบการณ์ที่เคยสอน (ไม่เกิน 250 คำ)</label>
+        <textarea id="experience" rows="4" class="border rounded-lg px-3 py-2 w-full" maxlength="300" oninput="updateCharCount('experience', 'experience-count', 300)"></textarea>
+        <p id="experience-count" class="text-xs text-gray-500 text-right mt-1">0/300 ตัวอักษร</p>
+      </div>
+
+      <div>
+        <label for="awards" class="block text-sm font-medium text-gray-700 mb-1">รางวัลหรือผลงานอื่นๆ </label>
+        <textarea id="awards" rows="4" class="border rounded-lg px-3 py-2 w-full" maxlength="300" oninput="updateCharCount('awards', 'awards-count', 300)"></textarea>
+        <p id="awards-count" class="text-xs text-gray-500 text-right mt-1">0/300 ตัวอักษร</p>
+      </div>
+
+      <div>
+        <label for="profession" class="block text-sm font-medium text-gray-700 mb-1">อาชีพในปัจจุบัน </label>
+        <textarea id="profession" rows="2" class="border rounded-lg px-3 py-2 w-full" maxlength="300" oninput="updateCharCount('profession', 'profession-count', 50)"></textarea>
+        <p id="profession-count" class="text-xs text-gray-500 text-right mt-1">0/50 ตัวอักษร</p>
+      </div>
+
+      <div>
+        <label for="tutor-photo-upload" class="block text-sm font-medium text-gray-700 mb-1">รูปโปรไฟล์ (.jpeg หรือ .png)</label>
+        <div id="photo-preview-container" class="mt-2 hidden">
+          <img id="photo-preview" src="#" alt="Tutor Photo Preview" class="max-h-60 rounded-lg mx-auto">
+          <button type="button" onclick="resetPhotoUpload()" class="mt-2 w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+            ลบรูปภาพ
+          </button>
+        </div>
+        <input type="file" id="tutor-photo-upload" class="border rounded-lg px-3 py-2 w-full" accept=".jpeg, .png, .jpg" required>
+      </div>
+
+      <div id="tutor-policy-section" class="space-y-4">
+        <h2 class="text-xl font-bold">นโยบายและข้อตกลงสำหรับติวเตอร์</h2>
+        <div class="policy-box text-sm text-gray-700">
+          <h3 class="font-semibold text-base mb-2">นโยบายความเป็นส่วนตัว (Privacy Policy)</h3>
+          <p class="mb-2">ในฐานะผู้ให้บริการสอนพิเศษ Lemon Tutor เราให้ความสำคัญกับการปกป้องข้อมูลของคุณ การสมัครเป็นติวเตอร์นี้ คุณได้ให้ข้อมูลส่วนตัวแก่เราเพื่อวัตถุประสงค์ต่อไปนี้:</p>
+          <ul class="list-disc list-inside ml-4 space-y-1">
+            <li><strong>การเก็บข้อมูล:</strong> เรารวบรวมข้อมูลส่วนบุคคล เช่น ชื่อ-นามสกุล, ชื่อเล่น, วันเกิด, เบอร์โทรศัพท์, Line ID, มหาวิทยาลัย, วุฒิการศึกษา รวมถึงรูปถ่าย, ประสบการณ์สอน, ผลงาน, และเอกสารยืนยันตัวตน เช่น สำเนา Transcript และบัตรประชาชน</li>
+            <li><strong>วัตถุประสงค์:</strong>
+              <ul class="list-circle list-inside ml-6">
+                <li>เพื่อใช้ข้อมูลและเอกสารส่วนตัวในการตรวจสอบและยืนยันคุณสมบัติของคุณในฐานะติวเตอร์</li>
+                <li>เพื่อใช้ข้อมูลการศึกษา, ประสบการณ์, ผลงาน และรูปถ่าย ในการประชาสัมพันธ์โปรไฟล์ของคุณให้กับผู้เรียนและผู้ปกครอง</li>
+                <li>เพื่อใช้ข้อมูลการติดต่อ (เบอร์โทร, Line ID) ในการสื่อสารและประสานงานเรื่องงานสอน</li>
+              </ul>
+            </li>
+            <li><strong>การเปิดเผยข้อมูล:</strong> เราจะเปิดเผยเฉพาะข้อมูลที่จำเป็นต่อการตัดสินใจของผู้เรียน เช่น ชื่อ-นามสกุล, ชื่อเล่น, ประวัติการศึกษา, ประสบการณ์สอน, และรูปถ่าย เพื่อให้ผู้เรียนเลือกติวเตอร์ได้อย่างเหมาะสม เอกสารสำคัญเช่นสำเนาบัตรประชาชนและ Transcript จะถูกเก็บไว้เป็นความลับ และจะใช้เพื่อการยืนยันภายในเท่านั้น</li>
+            <li><strong>การเก็บรักษา:</strong> เราจะเก็บรักษาข้อมูลของคุณอย่างปลอดภัยตามหลัก PDPA และจะใช้เท่าที่จำเป็นต่อการดำเนินงานของเรา</li>
+            <li><strong>การติดต่อ:</strong> หากมีข้อสงสัยเกี่ยวกับข้อมูลส่วนตัวของคุณ สามารถติดต่อเราได้ที่ lemontutor.service@gmail.com หรือโทร 088-888-5888</li>
+          </ul>
+          <h3 class="font-semibold text-base mt-4 mb-2">ข้อตกลงและเงื่อนไขการทำงาน</h3>
+          <p class="mb-2">การที่คุณสมัครเป็นติวเตอร์กับ Lemon Tutor ถือว่าคุณได้ยอมรับข้อตกลงเหล่านี้:</p>
+          <ol class="list-decimal list-inside ml-4 space-y-2">
+            <li>คุณรับรองว่าข้อมูลและเอกสารทั้งหมดที่ส่งมาเป็นความจริงและเป็นปัจจุบัน หากพบข้อมูลเท็จเรามีสิทธิ์ยกเลิกการเป็นติวเตอร์ของคุณทันที</li>
+            <li>คุณอนุญาตให้เราใช้ข้อมูลและรูปถ่ายของคุณเพื่อการประชาสัมพันธ์บนแพลตฟอร์มของเรา</li>
+            <li>คุณตกลงที่จะรับผิดชอบและเตรียมการสอนอย่างเต็มที่ในทุกงานที่คุณรับ</li>
+            <li>หากมีเหตุจำเป็นต้องเลื่อนหรือยกเลิกการสอน คุณต้องแจ้งให้ผู้เรียนและเราทราบล่วงหน้าอย่างน้อย 1 วัน</li>
+            <li>คุณจะรักษาจรรยาบรรณวิชาชีพและให้เกียรติผู้เรียนและผู้ปกครองเสมอ</li>
+          </ol>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="tutor-consent" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded" required>
+          <label for="tutor-consent" class="ml-2 block text-sm text-gray-900">
+            ฉันได้อ่านและยอมรับนโยบายและข้อตกลงสำหรับติวเตอร์ทั้งหมด
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full px-4 py-2 bg-pink-300 rounded-lg hover:bg-pink-400 transition">ส่งข้อมูล</button>
+    </form>
+    <div id="message" class="hidden mt-4 text-center text-green-600 font-semibold">
+      รอแอดมินพิจารณาและติดต่อกลับ
+    </div>
+  </div>
+</section>
+
+<script>
+  // Function to update character count
+  function updateCharCount(textareaId, countId, limit) {
+    const textarea = document.getElementById(textareaId);
+    const countDisplay = document.getElementById(countId);
+    const currentLength = textarea.value.length;
+    countDisplay.textContent = `${currentLength}/${limit} ตัวอักษร`;
+  }
+
+  // Handle photo preview and delete functionality
+  const photoInput = document.getElementById('tutor-photo-upload');
+  const photoPreview = document.getElementById('photo-preview');
+  const photoPreviewContainer = document.getElementById('photo-preview-container');
+
+  photoInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoPreview.src = e.target.result;
+        photoPreviewContainer.classList.remove('hidden');
+        photoInput.classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  function resetPhotoUpload() {
+    photoInput.value = ''; // Reset the file input
+    photoPreview.src = '#'; // Clear the preview image
+    photoPreviewContainer.classList.add('hidden');
+    photoInput.classList.remove('hidden');
+  }
+
+  // Handle form submission and consent check
+  function handleTutorFormSubmit(event) {
+    event.preventDefault();
+
+    // Check if the consent checkbox is checked
+    const consentCheckbox = document.getElementById('tutor-consent');
+    if (!consentCheckbox.checked) {
+      alert('กรุณาอ่านและยอมรับนโยบายและข้อตกลงก่อนดำเนินการต่อ');
+      return;
+    }
+
+    // If all required fields are valid and consent is given, show the success message
+    document.getElementById('message').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
