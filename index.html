@@ -18,6 +18,22 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
     .fade-in.show { opacity: 1; transform: translateY(0); }
     .fixed-contact { position: fixed; bottom: 20px; right: 20px; z-index: 50; }
+
+    /* CSS สำหรับการเลื่อนรูปอัตโนมัติ (Marquee Animation) */
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* เลื่อนไปครึ่งหนึ่ง (เพราะเราเบิ้ลรูปไว้ 2 ชุด) */
+    }
+    .scroller-inner {
+      width: max-content;
+      animation: scroll 40s linear infinite; /* ความเร็ว 40 วิ (ปรับให้น้อยลงถ้าอยากให้เร็วขึ้น) */
+      display: flex;
+      gap: 1.5rem; /* gap-6 */
+    }
+    /* หยุดเลื่อนเมื่อเอาเมาส์ไปชี้ */
+    .scroller-container:hover .scroller-inner {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -183,15 +199,24 @@
     </div>
   </section>
 
-  <section id="reviews" class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8 text-center fade-in">รีวิวจากผู้เรียน</h2>
-      <div class="overflow-x-auto flex gap-4 fade-in">
-        <img src="https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0">
-        <img src="https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0">
-        <img src="https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0">
-        <img src="https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0">
-      </div>
+  <section id="reviews" class="py-20 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
+      <h2 class="text-3xl font-bold fade-in">รีวิวจากผู้เรียน</h2>
+      <p class="text-gray-500 mt-2 fade-in">ความประทับใจจากน้องๆ ที่เรียนกับเรา</p>
+    </div>
+
+    <div class="scroller-container fade-in w-full overflow-hidden py-10">
+       <div class="scroller-inner">
+          <img src="https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          
+          <img src="https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+          <img src="https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+       </div>
     </div>
   </section>
 
