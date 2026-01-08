@@ -23,9 +23,15 @@
 
 <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
-    <a href="index.html" class="text-2xl font-bold text-yellow-600">Lemon Tutor</a>
+    <a href="index.html" class="flex items-center gap-3">
+        <img src="https://uppic.cloud/ib/8aEJZLpKbEAJXLL_1767882056.jpg" 
+             alt="Lemon Tutor Logo" 
+             class="w-10 h-10 rounded-full object-cover">
+        <span class="text-2xl font-bold text-yellow-600">Lemon Tutor</span>
+    </a>
     <nav class="space-x-4 hidden md:flex text-sm">
       <a href="index.html" class="hover:text-yellow-600">หน้าแรก</a>
+      <a href="articles.html" class="hover:text-yellow-600">บทความ</a>
       <a href="student-register.html" class="hover:text-yellow-600">สมัครเรียน</a>
       <a href="tutor.html" class="hover:text-yellow-600">สำหรับติวเตอร์</a>
       <a href="policies.html" class="hover:text-yellow-600">นโยบาย</a>
@@ -37,76 +43,80 @@
 <section class="pt-24 pb-20">
   <div class="max-w-2xl mx-auto px-6">
     <h1 class="text-3xl font-bold mb-6 text-center">สมัครเรียน</h1>
+    
     <form id="student-form" class="space-y-4">
-      <input type="text" id="firstName" placeholder="ชื่อ" class="border rounded-lg px-3 py-2 w-full" required>
-      <input type="text" id="lastName" placeholder="นามสกุล" class="border rounded-lg px-3 py-2 w-full" required>
-      <input type="email" id="email" placeholder="อีเมล" class="border rounded-lg px-3 py-2 w-full" required>
-      <input type="tel" id="phone" placeholder="เบอร์โทร" class="border rounded-lg px-3 py-2 w-full" required>
-      <input type="text" id="lineId" placeholder="ID Line" class="border rounded-lg px-3 py-2 w-full" required>
-      <select id="purpose" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="hidden" name="sheetName" value="Student_Data">
+
+      <input type="text" id="firstName" name="firstName" placeholder="ชื่อ" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="text" id="lastName" name="lastName" placeholder="นามสกุล" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="email" id="email" name="email" placeholder="อีเมล" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="tel" id="phone" name="phone" placeholder="เบอร์โทร" class="border rounded-lg px-3 py-2 w-full" required>
+      <input type="text" id="lineId" name="lineId" placeholder="ID Line" class="border rounded-lg px-3 py-2 w-full" required>
+      
+      <select id="purpose" name="purpose" class="border rounded-lg px-3 py-2 w-full" required>
         <option value="" disabled selected>จุดประสงค์การเรียน</option>
         <option value="เพื่อเตรียมสอบเข้า">เพื่อเตรียมสอบเข้า</option>
         <option value="เพื่อเพิ่มเกรด">เพื่อเพิ่มเกรด</option>
         <option value="เพื่อทบทวนเนื้อหา">เพื่อทบทวนเนื้อหา</option>
         <option value="อื่นๆ">อื่นๆ</option>
       </select>
-      <select id="subject" class="border rounded-lg px-3 py-2 w-full" required>
+      
+      <select id="subject" name="subject" class="border rounded-lg px-3 py-2 w-full" required>
         <option value="" disabled selected>วิชาที่ต้องการเรียน</option>
         <option value="อังกฤษ">อังกฤษ</option>
         <option value="ญี่ปุ่น">ญี่ปุ่น</option>
         <option value="จีน">จีน</option>
       </select>
 
-      <select id="location" class="border rounded-lg px-3 py-2 w-full" required>
+      <select id="location" name="location" class="border rounded-lg px-3 py-2 w-full" required>
         <option value="" disabled selected>สถานที่ที่สะดวกเรียน</option>
-        <option value="online">Online</option>
-        <option value="onsite">Onsite</option>
-        <option value="both">Both</option>
+        <option value="ออนไลน์ (Online)">ออนไลน์ (Online)</option>
+        <option value="นอกสถานที่ (Onsite)">นอกสถานที่ (Onsite)</option>
+        <option value="สะดวกทั้งสองแบบ">สะดวกทั้งสองแบบ</option>
       </select>
       
-      <textarea id="tutor-preference" rows="4" placeholder="ลักษณะติวเตอร์ที่ต้องการ (เช่น: เพศชาย/หญิง หรือไม่ระบุ, สอนสนุก, ใจดี, มีกิจกรรม)" class="border rounded-lg px-3 py-2 w-full"></textarea>
+      <textarea id="tutor-preference" name="tutorPreference" rows="4" placeholder="ลักษณะติวเตอร์ที่ต้องการ (เช่น: เพศชาย/หญิง หรือไม่ระบุ, สอนสนุก, ใจดี, มีกิจกรรม)" class="border rounded-lg px-3 py-2 w-full"></textarea>
 
       <div id="policy-section" class="space-y-4">
         <h2 class="text-xl font-bold">นโยบายการคุ้มครองข้อมูลส่วนบุคคล (สำหรับผู้เรียน)</h2>
         <div class="policy-box text-sm text-gray-700">
-          <p>ที่ Lemon Tutor เราให้ความสำคัญกับการปกป้องข้อมูลส่วนตัวของคุณ การลงทะเบียนนี้จะมีการเก็บรวบรวมข้อมูลส่วนบุคคลที่จำเป็นเท่านั้น และจะถูกนำไปใช้ตามวัตถุประสงค์ที่ระบุไว้ด้านล่าง</p>
+          <p>ที่ Lemon Tutor เราให้ความสำคัญกับการปกป้องข้อมูลส่วนตัวของคุณ การลงทะเบียนนี้จะมีการเก็บรวบรวมข้อมูลส่วนบุคคลที่จำเป็นเท่านั้น</p>
           <ul class="list-disc list-inside ml-4 space-y-1 mt-4">
             <li><strong>ข้อมูลที่เก็บ:</strong> ชื่อ-นามสกุล, อีเมล, เบอร์โทรศัพท์, Line ID, จุดประสงค์ และวิชาที่ต้องการเรียน</li>
-            <li><strong>วัตถุประสงค์:</strong> เราจะใช้ข้อมูลเหล่านี้เพื่อจับคู่คุณกับติวเตอร์ที่เหมาะสม และเพื่อใช้เป็นช่องทางในการติดต่อสื่อสารเกี่ยวกับการเรียนการสอน</li>
-            <li><strong>การเปิดเผยข้อมูล:</strong> เราจะเปิดเผยเพียงแค่ข้อมูลที่จำเป็น (เช่น ชื่อ-นามสกุล และช่องทางการติดต่อ) ให้กับติวเตอร์ที่คุณสนใจ เพื่อให้สามารถนัดหมายและเริ่มการสอนได้</li>
-            <li><strong>ความปลอดภัย:</strong> เรามีมาตรการรักษาความปลอดภัยเพื่อป้องกันการเข้าถึงข้อมูลโดยไม่ได้รับอนุญาต</li>
-            <li><strong>การติดต่อ:</strong> หากมีข้อสงสัยเกี่ยวกับข้อมูลของคุณ ติดต่อเราได้ที่ lemontutor.service@gmail.com หรือโทร 089-876-5432</li>
+            <li><strong>วัตถุประสงค์:</strong> เพื่อจับคู่คุณกับติวเตอร์ที่เหมาะสม</li>
+            <li><strong>การติดต่อ:</strong> หากมีข้อสงสัยติดต่อ Lemontutor.service@gmail.com หรือ Line @900ccbxp</li>
           </ul>
         </div>
         <div class="flex items-center">
           <input type="checkbox" id="student-consent" class="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded" required>
           <label for="student-consent" class="ml-2 block text-sm text-gray-900">
-            ฉันได้อ่านและยอมรับ <a href="#" class="text-yellow-600 hover:underline">นโยบายการคุ้มครองข้อมูลส่วนบุคคล</a>
+            ฉันได้อ่านและยอมรับ <a href="policies.html" class="text-yellow-600 hover:underline">นโยบายการคุ้มครองข้อมูลส่วนบุคคล</a>
           </label>
         </div>
       </div>
 
-      <button type="submit" class="w-full px-4 py-2 bg-yellow-300 rounded-lg hover:bg-yellow-400 transition">ส่งข้อมูล</button>
+      <button type="submit" class="w-full px-4 py-2 bg-yellow-300 rounded-lg hover:bg-yellow-400 transition font-bold">ส่งข้อมูล</button>
     </form>
+    
     <div id="summary-page" class="hidden mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
       <h3 class="text-2xl font-semibold mb-4 text-center">สรุปข้อมูลและขั้นตอนต่อไป</h3>
       <p class="text-lg mb-4 leading-relaxed text-center">
-        ขอบคุณที่สมัครเรียนค่ะ! เพื่อให้แอดมินติดต่อกลับได้รวดเร็ว กรุณาดำเนินการตามขั้นตอนใดขั้นตอนหนึ่งด้านล่างนี้ 👇
+        ขอบคุณที่สมัครเรียนค่ะ! เพื่อความรวดเร็ว กรุณาดำเนินการตามขั้นตอนด้านล่าง 👇
       </p>
       <div class="space-y-6">
         <div>
           <h4 class="font-bold text-lg mb-2">ตัวเลือกที่ 1: คัดลอกและส่งข้อมูลผ่าน LINE</h4>
-          <p class="mb-2">คัดลอกข้อความด้านล่างนี้ แล้วไปที่ช่องทาง LINE ของเราเพื่อส่งข้อมูลได้เลย</p>
+          <p class="mb-2">คัดลอกข้อความด้านล่างนี้ แล้วส่งให้แอดมินผ่าน LINE ได้เลย</p>
           <div class="bg-gray-100 p-4 rounded-lg border border-gray-300">
              <p id="summary-text" class="text-lg leading-relaxed whitespace-pre-line"></p>
           </div>
-          <a href="https://line.me/R/ti/p/@826cemxp" target="_blank" onclick="copyToClipboardAndRedirect()" class="w-full inline-block text-center px-4 py-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+          <a href="https://line.me/R/ti/p/@900ccbxp" target="_blank" onclick="copyToClipboardAndRedirect()" class="w-full inline-block text-center px-4 py-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
             คัดลอกและเปิด LINE
           </a>
         </div>
         <div>
           <h4 class="font-bold text-lg mb-2">ตัวเลือกที่ 2: รอการติดต่อกลับ</h4>
-          <p class="mb-2">แอดมินจะติดต่อกลับผ่านช่องทาง LINE ที่ท่านให้ไว้</p>
+          <p class="mb-2">แอดมินจะติดต่อกลับผ่านช่องทาง LINE หรือเบอร์โทรที่ท่านให้ไว้ภายใน 24 ชม.</p>
         </div>
       </div>
       <p id="copy-message" class="hidden text-center text-green-600 mt-4">คัดลอกสำเร็จ!</p>
@@ -115,16 +125,51 @@
 </section>
   
 <script>
-  document.getElementById('student-form').addEventListener('submit', function(event) {
+  // --- URL ของ Google Apps Script ของคุณ ---
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxJR33Uqn9X-aspAOYJcPkH-6SJc6hCk4INBegaQaxPnE_kQJShyO9frUKfVbIwo6E/exec';
+
+  document.getElementById('student-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    // Check if the consent checkbox is checked
     const consentCheckbox = document.getElementById('student-consent');
     if (!consentCheckbox.checked) {
         alert('กรุณายอมรับนโยบายการคุ้มครองข้อมูลส่วนบุคคลก่อนดำเนินการต่อ');
         return;
     }
 
+    const submitButton = document.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerText;
+    submitButton.innerText = 'กำลังส่งข้อมูล...';
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50');
+
+    try {
+      // เตรียมข้อมูลส่งเป็น JSON
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      // ส่งข้อมูล
+      await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "text/plain" }
+      });
+
+      // แสดงหน้าสรุป
+      showSummaryPage();
+
+    } catch (error) {
+      console.error('Error!', error.message);
+      alert('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message);
+    } finally {
+      submitButton.innerText = originalText;
+      submitButton.disabled = false;
+      submitButton.classList.remove('opacity-50');
+    }
+  });
+
+  function showSummaryPage() {
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const email = document.getElementById('email').value;
@@ -157,7 +202,7 @@
     document.getElementById('summary-text').innerText = summaryMessage;
     document.getElementById('student-form').classList.add('hidden');
     document.getElementById('summary-page').classList.remove('hidden');
-  });
+  }
 
   function copyToClipboardAndRedirect() {
     const summaryText = document.getElementById('summary-text').innerText;
@@ -167,7 +212,7 @@
       setTimeout(() => {
         copyMessage.classList.add('hidden');
       }, 2000);
-      window.open('https://line.me/R/ti/p/@826cemxp', '_blank');
+      window.open('https://line.me/R/ti/p/@900ccbxp', '_blank');
     }).catch(err => {
       console.error('Failed to copy text: ', err);
     });
