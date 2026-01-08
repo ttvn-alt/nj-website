@@ -1,245 +1,183 @@
-<!DOCTYPE html>
-<html lang="th">
+<!doctype html>
+<html lang=th>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lemon Tutor</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Kanit', sans-serif; }
-    html { scroll-behavior: smooth; }
-    :root {
-      --lemon: #FCEFB7;
-      --lemon-600: #FFD54D;
-      --pink-50: #FFF1F6;
-      --pink-300: #F8C8D8;
-    }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-    .fade-in.show { opacity: 1; transform: translateY(0); }
-    .fixed-contact { position: fixed; bottom: 20px; right: 20px; z-index: 50; }
-
-    /* CSS สำหรับการเลื่อนรูปอัตโนมัติ (Marquee Animation) */
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* เลื่อนไปครึ่งหนึ่ง (เพราะเราเบิ้ลรูปไว้ 2 ชุด) */
-    }
-    .scroller-inner {
-      width: max-content;
-      animation: scroll 40s linear infinite; /* ความเร็ว 40 วิ (ปรับให้น้อยลงถ้าอยากให้เร็วขึ้น) */
-      display: flex;
-      gap: 1.5rem; /* gap-6 */
-    }
-    /* หยุดเลื่อนเมื่อเอาเมาส์ไปชี้ */
-    .scroller-container:hover .scroller-inner {
-      animation-play-state: paused;
-    }
-  </style>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Lemon Tutor</title>
+<script src=https://cdn.tailwindcss.com></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel=stylesheet>
+<style>body{font-family:Kanit,sans-serif}html{scroll-behavior:smooth}:root{--lemon:#FCEFB7;--lemon-600:#FFD54D;--pink-50:#FFF1F6;--pink-300:#F8C8D8}.fade-in{opacity:0;transform:translateY(20px);transition:all .8s ease-out}.fade-in.show{opacity:1;transform:translateY(0)}.fixed-contact{position:fixed;bottom:20px;right:20px;z-index:50}@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.scroller-inner{width:max-content;animation:scroll 40s linear infinite;display:flex;gap:1.5rem}.scroller-container:hover .scroller-inner{animation-play-state:paused}</style>
 </head>
 <body class="bg-white text-gray-800">
-
-  <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="https://uppic.cloud/ib/8aEJZLpKbEAJXLL_1767882056.jpg" 
-             alt="Lemon Tutor Logo" 
-             class="w-10 h-10 rounded-full object-cover">
-        <span class="text-2xl font-bold text-yellow-600">Lemon Tutor</span>
-      </a>
-      <nav class="space-x-4 hidden md:flex text-sm">
-        <a href="index.html" class="hover:text-yellow-600">หน้าแรก</a>
-        <a href="articles.html" class="hover:text-yellow-600">บทความ</a>
-        <a href="student-register.html" class="hover:text-yellow-600">สมัครเรียน</a>
-        <a href="tutor.html" class="hover:text-yellow-600">สำหรับติวเตอร์</a>
-        <a href="policies.html" class="hover:text-yellow-600">นโยบาย</a>
-        <a href="contact.html" class="hover:text-yellow-600">ติดต่อเรา</a>
-      </nav>
-    </div>
-  </header>
-
-  <section id="home" class="pt-24 pb-20 bg-pink-50">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in">แพลตฟอร์มรวมติวเตอร์คุณภาพ</h1>
-      <p class="text-lg md:text-xl mb-6 fade-in">สอนนอกสถานที่+สอนออนไลน์ เลือกครูได้เอง ราคาสบายกระเป๋า</p>
-      <div class="flex justify-center gap-4 mb-6 fade-in">
-        <a href="student-register.html" class="px-6 py-3 bg-yellow-300 rounded-xl shadow-md hover:bg-yellow-400 transition">สมัครเรียน</a>
-        <a href="tutor.html" class="px-6 py-3 bg-pink-300 rounded-xl shadow-md hover:bg-pink-400 transition">สำหรับติวเตอร์</a>
-      </div>
-      <div class="bg-yellow-50 rounded-xl p-6 shadow-md inline-block fade-in">
-        <p>เรียนง่ายๆได้ทุกที่ทุกเวลา รีวิวจากผู้เรียนโดยตรง</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="courses" class="py-20 bg-pink-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8 text-center fade-in">หลักสูตร & วิชาเรียน</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg fade-in">
-          <h3 class="font-semibold text-xl mb-2 text-yellow-600">วิชาพื้นฐาน</h3>
-          <p>คณิต, วิทย์, อังกฤษ ฯลฯ</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg fade-in">
-          <h3 class="font-semibold text-xl mb-2 text-yellow-600">สอบเฉพาะทาง</h3>
-          <p>IELTS, SAT, JLPT</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="py-20 bg-white text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8 text-yellow-600 fade-in">ราคา & แพ็กเกจ</h2>
-      <div class="bg-yellow-50 rounded-2xl shadow-xl p-8 transform transition-transform hover:scale-105 fade-in">
-        <p class="text-5xl font-extrabold text-yellow-600 mb-4">เริ่มต้นเพียง <span class="text-6xl">200</span> บาท/ชม.</p>
-        <p class="text-xl font-semibold text-gray-700">สอนตัวต่อตัว เรียนได้ทุกที่ ทุกเวลา</p>
-        <div class="mt-6 flex justify-center items-center gap-2">
-          <span class="text-lg font-medium text-gray-600">ช่องทางการชำระเงิน:</span>
-          <span class="text-lg font-bold text-gray-800">โอนผ่านบัญชีธนาคาร</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="works" class="py-20 bg-yellow-50">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-12 fade-in">ขั้นตอนง่ายๆ สำหรับผู้เรียน & ผู้ปกครอง</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
-          <div class="bg-yellow-300 rounded-full p-4 mb-4">
-            <span class="text-white text-2xl font-bold">1</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">กรอกข้อมูลเพื่อเริ่มต้น</h3>
-          <p class="text-gray-600">กรอกข้อมูลที่จำเป็นเพื่อเริ่มต้นเส้นทางการเรียนรู้</p>
-        </div>
-        <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
-          <div class="bg-yellow-300 rounded-full p-4 mb-4">
-            <span class="text-white text-2xl font-bold">2</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">ติดต่อเราผ่าน LINE</h3>
-          <p class="text-gray-600">ส่งข้อมูลและแจ้งรายละเอียดการเรียนที่ต้องการ ผ่าน LINE ID: @900ccbxp</p>
-        </div>
-        <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
-          <div class="bg-yellow-300 rounded-full p-4 mb-4">
-            <span class="text-white text-2xl font-bold">3</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">เลือกติวเตอร์ที่เหมาะสม</h3>
-          <p class="text-gray-600">เจ้าหน้าที่จะคัดเลือกและนำเสนอติวเตอร์ที่เหมาะสมให้คุณเลือก</p>
-        </div>
-        <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
-          <div class="bg-yellow-300 rounded-full p-4 mb-4">
-            <span class="text-white text-2xl font-bold">4</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">เริ่มเรียนได้ทันที!</h3>
-          <p class="text-gray-600">เมื่อเลือกได้แล้ว ผู้สอนจะติดต่อคุณเพื่อเริ่มคลาส</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="why-choose-us" class="py-20 bg-pink-50">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-12 text-center fade-in">ทำไมผู้ปกครองถึงเลือกเรา</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
-          <div class="text-4xl mb-4">💰</div>
-          <h3 class="text-lg font-semibold mb-2 text-yellow-600">คุ้มค่า คุ้มราคา</h3>
-          <p class="text-gray-600 text-sm">ในราคาที่เข้าถึงง่าย เราคัดเลือกติวเตอร์คุณภาพจากมหาวิทยาลัยชั้นนำ เพื่อให้ลูกหลานของท่านได้รับความรู้ที่ดีที่สุด</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
-          <div class="text-4xl mb-4">💬</div>
-          <h3 class="text-lg font-semibold mb-2 text-yellow-600">คลาสเรียนสนุก เข้าใจง่าย</h3>
-          <p class="text-gray-600 text-sm">การเรียนการสอนของเราเน้นความสนุกและมีส่วนร่วม ติวเตอร์จะชวนให้นักเรียนแสดงความคิดเห็นและร่วมกิจกรรมตลอดทั้งคลาส</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
-          <div class="text-4xl mb-4">🎓</div>
-          <h3 class="text-lg font-semibold mb-2 text-yellow-600">ครอบคลุมทุกระดับชั้นและบุคคลทั่วไป</h3>
-          <p class="text-gray-600 text-sm">เรามีคอร์สที่ครอบคลุมตั้งแต่ประถมต้นจนถึงมัธยมปลาย รวมถึงคอร์สติวเข้มช่วงปิดเทอมใหญ่ (ก.ค. - ก.ย.) เพื่อเตรียมพร้อมสำหรับภาคเรียนใหม่</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="all-ages" class="py-20 bg-gradient-to-r from-yellow-50 via-pink-50 to-yellow-100">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12 text-center text-yellow-600 fade-in">
-        เหมาะกับทุกช่วงวัย
-      </h2>
-      <p class="text-center max-w-3xl mx-auto text-gray-700 text-lg mb-12 fade-in">
-        ที่ Lemon Tutor เราเชื่อว่าการเรียนรู้ไม่มีวันสิ้นสุด ไม่ว่าคุณจะอยู่ในช่วงวัยไหน 
-        ก็สามารถพัฒนาตัวเองได้เสมอ เรามีคอร์สเรียนที่ออกแบบมาเพื่อตอบโจทย์ทุกกลุ่มเป้าหมาย
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
-          <div class="text-5xl mb-4">🌱</div>
-          <h3 class="text-xl font-semibold mb-3 text-yellow-600">ระดับอนุบาลและประถม</h3>
-          <p class="text-gray-600">
-            เน้นการปูพื้นฐานวิชาการ สร้างทัศนคติที่ดีต่อการเรียน 
-            และพัฒนาทักษะที่จำเป็นผ่านการเรียนรู้ที่สนุกสนาน
-          </p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
-          <div class="text-5xl mb-4">📚</div>
-          <h3 class="text-xl font-semibold mb-3 text-yellow-600">ระดับมัธยม</h3>
-          <p class="text-gray-600">
-            ช่วยเพิ่มเกรด ติวสอบเข้า และเตรียมความพร้อมสำหรับสนามสอบสำคัญ 
-            หรือการสอบเฉพาะทางอื่นๆ
-          </p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
-          <div class="text-5xl mb-4">🚀</div>
-          <h3 class="text-xl font-semibold mb-3 text-yellow-600">มหาวิทยาลัยและวัยทำงาน</h3>
-          <p class="text-gray-600">
-            สำหรับการติวเสริมในวิชาเรียนมหาวิทยาลัย 
-            หรือคอร์สที่จำเป็นสำหรับการพัฒนาตัวเองในสายอาชีพ 
-            เช่น ภาษาอังกฤษเพื่อการทำงาน หรือการสอบวัดระดับภาษาต่างๆ
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="reviews" class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
-      <h2 class="text-3xl font-bold fade-in">รีวิวจากผู้เรียน</h2>
-      <p class="text-gray-500 mt-2 fade-in">ความประทับใจจากน้องๆ ที่เรียนกับเรา</p>
-    </div>
-
-    <div class="scroller-container fade-in w-full overflow-hidden py-10">
-       <div class="scroller-inner">
-          <img src="https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          
-          <img src="https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg" class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
-       </div>
-    </div>
-  </section>
-
-  <a href="https://line.me/R/ti/p/@900ccbxp" target="_blank" class="fixed-contact px-4 py-3 bg-yellow-400 rounded-full shadow-lg hover:bg-yellow-500 transition">ติดต่อเรา</a>
-
-  <footer class="py-6 text-center bg-gray-100 mt-10">
-    <p>© 2025 Lemon Tutor. All rights reserved.</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const faders = document.querySelectorAll(".fade-in");
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      faders.forEach(fader => observer.observe(fader));
-    });
-  </script>
-
+<header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+<a href=index.html class="flex items-center gap-3">
+<img src=https://uppic.cloud/ib/8aEJZLpKbEAJXLL_1767882056.jpg alt="Lemon Tutor Logo" class="w-10 h-10 rounded-full object-cover">
+<span class="text-2xl font-bold text-yellow-600">Lemon Tutor</span>
+</a>
+<nav class="space-x-4 hidden md:flex text-sm">
+<a href=index.html class=hover:text-yellow-600>หน้าแรก</a>
+<a href=articles.html class=hover:text-yellow-600>บทความ</a>
+<a href=student-register.html class=hover:text-yellow-600>สมัครเรียน</a>
+<a href=tutor.html class=hover:text-yellow-600>สำหรับติวเตอร์</a>
+<a href=policies.html class=hover:text-yellow-600>นโยบาย</a>
+<a href=contact.html class=hover:text-yellow-600>ติดต่อเรา</a>
+</nav>
+</div>
+</header>
+<section id=home class="pt-24 pb-20 bg-pink-50">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in">แพลตฟอร์มรวมติวเตอร์คุณภาพ</h1>
+<p class="text-lg md:text-xl mb-6 fade-in">สอนนอกสถานที่+สอนออนไลน์ เลือกครูได้เอง ราคาสบายกระเป๋า</p>
+<div class="flex justify-center gap-4 mb-6 fade-in">
+<a href=student-register.html class="px-6 py-3 bg-yellow-300 rounded-xl shadow-md hover:bg-yellow-400 transition">สมัครเรียน</a>
+<a href=tutor.html class="px-6 py-3 bg-pink-300 rounded-xl shadow-md hover:bg-pink-400 transition">สำหรับติวเตอร์</a>
+</div>
+<div class="bg-yellow-50 rounded-xl p-6 shadow-md inline-block fade-in">
+<p>เรียนง่ายๆได้ทุกที่ทุกเวลา รีวิวจากผู้เรียนโดยตรง</p>
+</div>
+</div>
+</section>
+<section id=courses class="py-20 bg-pink-50">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold mb-8 text-center fade-in">หลักสูตร & วิชาเรียน</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg fade-in">
+<h3 class="font-semibold text-xl mb-2 text-yellow-600">วิชาพื้นฐาน</h3>
+<p>คณิต, วิทย์, อังกฤษ ฯลฯ</p>
+</div>
+<div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg fade-in">
+<h3 class="font-semibold text-xl mb-2 text-yellow-600">สอบเฉพาะทาง</h3>
+<p>IELTS, SAT, JLPT</p>
+</div>
+</div>
+</div>
+</section>
+<section id=pricing class="py-20 bg-white text-center">
+<div class="max-w-4xl mx-auto px-6">
+<h2 class="text-3xl font-bold mb-8 text-yellow-600 fade-in">ราคา & แพ็กเกจ</h2>
+<div class="bg-yellow-50 rounded-2xl shadow-xl p-8 transform transition-transform hover:scale-105 fade-in">
+<p class="text-5xl font-extrabold text-yellow-600 mb-4">เริ่มต้นเพียง <span class=text-6xl>200</span> บาท/ชม.</p>
+<p class="text-xl font-semibold text-gray-700">สอนตัวต่อตัว เรียนได้ทุกที่ ทุกเวลา</p>
+<div class="mt-6 flex justify-center items-center gap-2">
+<span class="text-lg font-medium text-gray-600">ช่องทางการชำระเงิน:</span>
+<span class="text-lg font-bold text-gray-800">โอนผ่านบัญชีธนาคาร</span>
+</div>
+</div>
+</div>
+</section>
+<section id=works class="py-20 bg-yellow-50">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-3xl font-bold mb-12 fade-in">ขั้นตอนง่ายๆ สำหรับผู้เรียน & ผู้ปกครอง</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
+<div class="bg-yellow-300 rounded-full p-4 mb-4">
+<span class="text-white text-2xl font-bold">1</span>
+</div>
+<h3 class="text-xl font-semibold mb-2">กรอกข้อมูลเพื่อเริ่มต้น</h3>
+<p class=text-gray-600>กรอกข้อมูลที่จำเป็นเพื่อเริ่มต้นเส้นทางการเรียนรู้</p>
+</div>
+<div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
+<div class="bg-yellow-300 rounded-full p-4 mb-4">
+<span class="text-white text-2xl font-bold">2</span>
+</div>
+<h3 class="text-xl font-semibold mb-2">ติดต่อเราผ่าน LINE</h3>
+<p class=text-gray-600>ส่งข้อมูลและแจ้งรายละเอียดการเรียนที่ต้องการ ผ่าน LINE ID: @900ccbxp</p>
+</div>
+<div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
+<div class="bg-yellow-300 rounded-full p-4 mb-4">
+<span class="text-white text-2xl font-bold">3</span>
+</div>
+<h3 class="text-xl font-semibold mb-2">เลือกติวเตอร์ที่เหมาะสม</h3>
+<p class=text-gray-600>เจ้าหน้าที่จะคัดเลือกและนำเสนอติวเตอร์ที่เหมาะสมให้คุณเลือก</p>
+</div>
+<div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition fade-in">
+<div class="bg-yellow-300 rounded-full p-4 mb-4">
+<span class="text-white text-2xl font-bold">4</span>
+</div>
+<h3 class="text-xl font-semibold mb-2">เริ่มเรียนได้ทันที!</h3>
+<p class=text-gray-600>เมื่อเลือกได้แล้ว ผู้สอนจะติดต่อคุณเพื่อเริ่มคลาส</p>
+</div>
+</div>
+</div>
+</section>
+<section id=why-choose-us class="py-20 bg-pink-50">
+<div class="max-w-5xl mx-auto px-6">
+<h2 class="text-3xl font-bold mb-12 text-center fade-in">ทำไมผู้ปกครองถึงเลือกเรา</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
+<div class="text-4xl mb-4">💰</div>
+<h3 class="text-lg font-semibold mb-2 text-yellow-600">คุ้มค่า คุ้มราคา</h3>
+<p class="text-gray-600 text-sm">ในราคาที่เข้าถึงง่าย เราคัดเลือกติวเตอร์คุณภาพจากมหาวิทยาลัยชั้นนำ เพื่อให้ลูกหลานของท่านได้รับความรู้ที่ดีที่สุด</p>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
+<div class="text-4xl mb-4">💬</div>
+<h3 class="text-lg font-semibold mb-2 text-yellow-600">คลาสเรียนสนุก เข้าใจง่าย</h3>
+<p class="text-gray-600 text-sm">การเรียนการสอนของเราเน้นความสนุกและมีส่วนร่วม ติวเตอร์จะชวนให้นักเรียนแสดงความคิดเห็นและร่วมกิจกรรมตลอดทั้งคลาส</p>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition fade-in">
+<div class="text-4xl mb-4">🎓</div>
+<h3 class="text-lg font-semibold mb-2 text-yellow-600">ครอบคลุมทุกระดับชั้นและบุคคลทั่วไป</h3>
+<p class="text-gray-600 text-sm">เรามีคอร์สที่ครอบคลุมตั้งแต่ประถมต้นจนถึงมัธยมปลาย รวมถึงคอร์สติวเข้มช่วงปิดเทอมใหญ่ (ก.ค. - ก.ย.) เพื่อเตรียมพร้อมสำหรับภาคเรียนใหม่</p>
+</div>
+</div>
+</div>
+</section>
+<section id=all-ages class="py-20 bg-gradient-to-r from-yellow-50 via-pink-50 to-yellow-100">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-4xl font-bold mb-12 text-center text-yellow-600 fade-in">
+เหมาะกับทุกช่วงวัย
+</h2>
+<p class="text-center max-w-3xl mx-auto text-gray-700 text-lg mb-12 fade-in">
+ที่ Lemon Tutor เราเชื่อว่าการเรียนรู้ไม่มีวันสิ้นสุด ไม่ว่าคุณจะอยู่ในช่วงวัยไหน ก็สามารถพัฒนาตัวเองได้เสมอ เรามีคอร์สเรียนที่ออกแบบมาเพื่อตอบโจทย์ทุกกลุ่มเป้าหมาย
+</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
+<div class="text-5xl mb-4">🌱</div>
+<h3 class="text-xl font-semibold mb-3 text-yellow-600">ระดับอนุบาลและประถม</h3>
+<p class=text-gray-600>
+เน้นการปูพื้นฐานวิชาการ สร้างทัศนคติที่ดีต่อการเรียน และพัฒนาทักษะที่จำเป็นผ่านการเรียนรู้ที่สนุกสนาน
+</p>
+</div>
+<div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
+<div class="text-5xl mb-4">📚</div>
+<h3 class="text-xl font-semibold mb-3 text-yellow-600">ระดับมัธยม</h3>
+<p class=text-gray-600>
+ช่วยเพิ่มเกรด ติวสอบเข้า และเตรียมความพร้อมสำหรับสนามสอบสำคัญ หรือการสอบเฉพาะทางอื่นๆ
+</p>
+</div>
+<div class="bg-white rounded-2xl shadow-md p-8 transform transition duration-500 hover:scale-105 hover:shadow-pink-200 fade-in">
+<div class="text-5xl mb-4">🚀</div>
+<h3 class="text-xl font-semibold mb-3 text-yellow-600">มหาวิทยาลัยและวัยทำงาน</h3>
+<p class=text-gray-600>
+สำหรับการติวเสริมในวิชาเรียนมหาวิทยาลัย หรือคอร์สที่จำเป็นสำหรับการพัฒนาตัวเองในสายอาชีพ เช่น ภาษาอังกฤษเพื่อการทำงาน หรือการสอบวัดระดับภาษาต่างๆ
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id=reviews class="py-20 bg-white overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 mb-8 text-center">
+<h2 class="text-3xl font-bold fade-in">รีวิวจากผู้เรียน</h2>
+<p class="text-gray-500 mt-2 fade-in">ความประทับใจจากน้องๆ ที่เรียนกับเรา</p>
+</div>
+<div class="scroller-container fade-in w-full overflow-hidden py-10">
+<div class=scroller-inner>
+<img src=https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/J7NWYMbp/What_s_App_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/y6mzpsFT/Whats_App_Image_2026_01_08_at_22_40_36.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/zDC128np/Whats_App_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src=https://i.postimg.cc/fWchqDxH/Whats_Appk_Image_2026_01_08_at_22_40_37.jpg class="w-80 h-80 object-cover rounded-xl shadow-md flex-shrink-0 transition-transform duration-300 hover:scale-110 cursor-pointer">
+</div>
+</div>
+</section>
+<a href=https://line.me/R/ti/p/@900ccbxp target=_blank class="fixed-contact px-4 py-3 bg-yellow-400 rounded-full shadow-lg hover:bg-yellow-500 transition">ติดต่อเรา</a>
+<footer class="py-6 text-center bg-gray-100 mt-10">
+<p>© 2025 Lemon Tutor. All rights reserved.</p>
+</footer>
+<script>document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelectorAll(".fade-in"),t=new IntersectionObserver((e=>{e.forEach((e=>{e.isIntersecting&&(e.target.classList.add("show"),t.unobserve(e.target))}))}),{threshold:.2});e.forEach((e=>t.observe(e)))})),document.addEventListener("contextmenu",(e=>e.preventDefault())),document.onkeydown=function(e){return 123!=e.keyCode&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="I".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="C".charCodeAt(0))&&((!e.ctrlKey||e.keyCode!="U".charCodeAt(0))&&void 0)))}</script>
 </body>
 </html>
